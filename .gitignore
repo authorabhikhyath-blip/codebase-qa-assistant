@@ -1,0 +1,45 @@
+# Node / Next.js
+node_modules/
+.pnpm-store/
+.npm/
+.next/
+out/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Local configuration and data
+.env
+.env.*
+!.env.example
+*.db
+*.sqlite
+*.sqlite3
+chroma/
+chromadb/
+/backend/data/
+/backend/.cache/
+local_data/
+*.gguf
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+.DS_Store?
+desktop.ini
