@@ -29,6 +29,7 @@ class LocalChromaStore:
     def __init__(self, data_dir: str | Path | None = None) -> None:
         path = Path(data_dir or settings.chroma_data_dir)
         path.mkdir(parents=True, exist_ok=True)
+        self.data_dir = path
         self._client = chromadb.PersistentClient(
             path=str(path),
             settings=ChromaSettings(anonymized_telemetry=False),
@@ -97,7 +98,7 @@ class LocalChromaStore:
     @staticmethod
     def chunk_id(chunk: CodeChunk) -> str:
         key = "\0".join((chunk.repository_id, chunk.file_path, chunk.chunk_type, chunk.symbol,
-                          str(chunk.start_line), str(chunk.end_line), chunk.source_code))
+                          chunk.parent_symbol, str(chunk.start_line), str(chunk.end_line), chunk.source_code))
         return hashlib.sha256(key.encode("utf-8")).hexdigest()
 
     @staticmethod
@@ -108,6 +109,7 @@ class LocalChromaStore:
             "repository_path": chunk.repository_path,
             "file_path": chunk.file_path,
             "symbol": chunk.symbol,
+            "parent_symbol": chunk.parent_symbol,
             "chunk_type": chunk.chunk_type,
             "start_line": chunk.start_line,
             "end_line": chunk.end_line,

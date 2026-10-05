@@ -1,0 +1,100 @@
+[
+  {
+    "id": "q01_exact_id_rrf_k",
+    "category": "exact_identifier",
+    "question": "Where is rrf_k configured in settings?",
+    "expected_files": ["core/config.py"],
+    "expected_symbols": ["rrf_k", "Settings"]
+  },
+  {
+    "id": "q02_exact_id_retrieval_top_k",
+    "category": "exact_identifier",
+    "question": "What is retrieval_top_k in the settings configuration?",
+    "expected_files": ["core/config.py"],
+    "expected_symbols": ["retrieval_top_k"]
+  },
+  {
+    "id": "q03_func_reciprocal_rank_fusion",
+    "category": "function",
+    "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+    "expected_files": ["services/hybrid.py"],
+    "expected_symbols": ["reciprocal_rank_fusion"]
+  },
+  {
+    "id": "q04_func_tokenize_code",
+    "category": "function",
+    "question": "How does tokenize_code construct search tokens from source text?",
+    "expected_files": ["services/bm25.py"],
+    "expected_symbols": ["tokenize_code"]
+  },
+  {
+    "id": "q05_class_local_reranker",
+    "category": "class",
+    "question": "What methods and attributes does LocalReranker have?",
+    "expected_files": ["services/reranker.py"],
+    "expected_symbols": ["LocalReranker"]
+  },
+  {
+    "id": "q06_class_overview_response",
+    "category": "class",
+    "question": "What fields are defined on the RepositoryOverviewResponse model?",
+    "expected_files": ["models/repository.py"],
+    "expected_symbols": ["RepositoryOverviewResponse"]
+  },
+  {
+    "id": "q07_arch_hybrid_fusion",
+    "category": "architecture",
+    "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+    "expected_files": ["services/qa.py", "services/hybrid.py"],
+    "expected_symbols": ["LocalQAService", "reciprocal_rank_fusion"]
+  },
+  {
+    "id": "q08_arch_indexing_pipeline",
+    "category": "architecture",
+    "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+    "expected_files": ["services/indexing.py"],
+    "expected_symbols": ["RepositoryIndexingService", "index_repository"]
+  },
+  {
+    "id": "q09_cross_chat_request_flow",
+    "category": "cross_component",
+    "question": "How does the chat route pass retrieval mode to LocalQAService?",
+    "expected_files": ["api/routes.py", "services/qa.py"],
+    "expected_symbols": ["chat", "LocalQAService"]
+  },
+  {
+    "id": "q10_cross_overview_indexing",
+    "category": "cross_component",
+    "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+    "expected_files": ["services/overview.py", "services/indexing.py"],
+    "expected_symbols": ["save_repository_overview", "RepositoryIndexingService"]
+  },
+  {
+    "id": "q11_detail_source_traversal_prevention",
+    "category": "implementation_detail",
+    "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+    "expected_files": ["services/overview.py"],
+    "expected_symbols": ["get_repository_source_snippet"]
+  },
+  {
+    "id": "q12_detail_select_diverse_chunks",
+    "category": "implementation_detail",
+    "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+    "expected_files": ["services/qa.py"],
+    "expected_symbols": ["select_diverse_chunks"]
+  },
+  {
+    "id": "q13_loc_ollama_client",
+    "category": "location",
+    "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+    "expected_files": ["services/ollama.py"],
+    "expected_symbols": ["LocalOllamaService", "generate"]
+  },
+  {
+    "id": "q14_expl_rrf_scoring",
+    "category": "explanation",
+    "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+    "expected_files": ["services/hybrid.py"],
+    "expected_symbols": ["reciprocal_rank_fusion"]
+  }
+]

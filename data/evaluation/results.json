@@ -1,0 +1,2539 @@
+{
+  "timestamp": "2026-10-05T17:32:51.240925+00:00",
+  "repository_id": "31d26df514f0f1ab210b2c05d475bcb97d954f4aa36aed0ecd1ade639f418b8d",
+  "repository_path": "C:\\Users\\autho\\OneDrive - WOXSEN UNIVERSITY\\Documents\\ChatGPT\\Codebase QA Assistant\\backend\\app",
+  "metrics": {
+    "semantic": {
+      "total_questions": 14,
+      "file_recall": 0.9286,
+      "symbol_recall": 1.0,
+      "evidence_recall": 0.9286,
+      "grounded_rate": 0.9286
+    },
+    "bm25": {
+      "total_questions": 14,
+      "file_recall": 1.0,
+      "symbol_recall": 1.0,
+      "evidence_recall": 1.0,
+      "grounded_rate": 1.0
+    },
+    "hybrid": {
+      "total_questions": 14,
+      "file_recall": 1.0,
+      "symbol_recall": 1.0,
+      "evidence_recall": 1.0,
+      "grounded_rate": 1.0
+    },
+    "hybrid_rerank": {
+      "total_questions": 14,
+      "file_recall": 1.0,
+      "symbol_recall": 1.0,
+      "evidence_recall": 1.0,
+      "grounded_rate": 1.0
+    }
+  },
+  "results_by_mode": {
+    "semantic": [
+      {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "core/config.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "config",
+          "__init__"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "semantic",
+        "file_found": false,
+        "symbol_found": true,
+        "evidence_found": false,
+        "answer_generated": false,
+        "grounded_answer": false,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/bm25.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "search",
+          "ask"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "rerank"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/reranker.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "_extract_query_terms",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/reranker.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "LocalReranker",
+          "LocalChromaStore"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "models/repository.py",
+          "models/repository.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryOverviewResponse",
+          "RepositoryScanRequest",
+          "RepositoryScanResponse"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "select_diverse_chunks",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/indexing.py",
+          "services/bm25.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryIndexingService",
+          "LocalBM25Store",
+          "LocalChromaStore"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/qa.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "chat",
+          "LocalQAService",
+          "ChatRequest"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "models/repository.py",
+          "services/overview.py"
+        ],
+        "retrieved_symbols": [
+          "repository_overview",
+          "RepositoryOverviewResponse",
+          "get_repository_overview"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "services/repository_ingestion.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "scan_repository",
+          "repository_source"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/vector_store.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "replace_repository_chunks",
+          "LocalReranker"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "api/routes.py",
+          "services/ollama.py"
+        ],
+        "retrieved_symbols": [
+          "LocalOllamaService",
+          "ollama_status",
+          "OllamaUnavailable"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/reranker.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "rerank",
+          "score_candidate"
+        ],
+        "answer_preview": ""
+      }
+    ],
+    "bm25": [
+      {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/hybrid.py",
+          "core/config.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "reciprocal_rank_fusion",
+          "Settings"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "core/config.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "Settings",
+          "ChatRequest"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/hybrid.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "reciprocal_rank_fusion",
+          "qa"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/bm25.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "search",
+          "replace_repository_chunks"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/reranker.py",
+          "services/reranker.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "__init__",
+          "_extract_query_terms",
+          "__init__"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "models/repository.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "repository_overview",
+          "RepositoryOverviewResponse",
+          "routes"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "__init__",
+          "chat"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/indexing.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "__init__",
+          "indexing"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/qa.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "chat",
+          "ask",
+          "ChatResponse"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "api/routes.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "save_repository_overview",
+          "repository_overview",
+          "indexing"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "api/routes.py",
+          "services/repository_ingestion.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "repository_source",
+          "scan_repository"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "ask",
+          "LocalChromaStore"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "services/ollama.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "__init__",
+          "status",
+          "LocalQAService"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "qa"
+        ],
+        "answer_preview": ""
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "services/qa.py",
+          "core/config.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "LocalQAService",
+          "config"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "ask",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "rerank"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/reranker.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "_extract_query_terms",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/reranker.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "__init__",
+          "_extract_query_terms"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "models/repository.py",
+          "api/routes.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryOverviewResponse",
+          "repository_overview",
+          "RepositoryScanRequest"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "select_diverse_chunks",
+          "__init__"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/indexing.py",
+          "services/qa.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryIndexingService",
+          "ask",
+          "LocalBM25Store"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/qa.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "chat",
+          "LocalQAService",
+          "ChatRequest"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/overview.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "repository_overview",
+          "save_repository_overview",
+          "RepositoryOverviewResponse"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "services/repository_ingestion.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "scan_repository",
+          "repository_source"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/vector_store.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "replace_repository_chunks",
+          "ask"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "services/qa.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "LocalOllamaService",
+          "LocalQAService",
+          "ollama_status"
+        ],
+        "answer_preview": ""
+      },
+      {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/reranker.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "rerank",
+          "ask"
+        ],
+        "answer_preview": ""
+      }
+    ],
+    "hybrid_rerank": [
+      {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "services/qa.py",
+          "services/hybrid.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "LocalQAService",
+          "reciprocal_rank_fusion"
+        ],
+        "answer_preview": "rrf_k is configured in the `Settings` class, which is defined in `core/config.py`."
+      },
+      {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "services/qa.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "ask",
+          "chat"
+        ],
+        "answer_preview": "The value of `retrieval_top_k` in the settings configuration is 5. This can be seen in the `Settings` class definition in `core/config.py`, where `retrieval_top..."
+      },
+      {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "LocalQAService",
+          "qa"
+        ],
+        "answer_preview": "Reciprocal Rank Fusion (RRF) is a technique used in hybrid retrieval services to combine multiple ranked candidate lists into a single ranking. The function `re..."
+      },
+      {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/bm25.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "search",
+          "search"
+        ],
+        "answer_preview": "To answer the question \"How does tokenize_code construct search tokens from source text?\", I will analyze the provided code snippet from `services/bm25.py`.\n\nTh..."
+      },
+      {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/reranker.py",
+          "services/reranker.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "LocalReranker",
+          "reranker",
+          "LocalQAService"
+        ],
+        "answer_preview": "Based on the provided code context, the `LocalReranker` class has the following methods and attributes:\n\n### Methods:\n1. **`__init__`**: Initializes the reranke..."
+      },
+      {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "models/repository.py",
+          "models/repository.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryOverviewResponse",
+          "RepositoryScanResponse",
+          "SourceCodeResponse"
+        ],
+        "answer_preview": "Based on the provided code snippets, the `RepositoryOverviewResponse` model is defined in the `models/repository.py` file. The fields defined on this model are:..."
+      },
+      {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/hybrid.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "qa",
+          "reciprocal_rank_fusion"
+        ],
+        "answer_preview": "Hybrid retrieval results are fused and filtered in the `LocalQAService` class by the `ask` method. The `ask` method first determines the retrieval mode (e.g., \"..."
+      },
+      {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/indexing.py",
+          "services/bm25.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "indexing",
+          "bm25",
+          "RepositoryIndexingService"
+        ],
+        "answer_preview": "The indexing service persists chunks into ChromaDB and BM25 by using the `LocalChromaStore` and `LocalBM25Store` classes respectively. Here's how it works:\n\n1. ..."
+      },
+      {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "api/routes.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "chat",
+          "qa"
+        ],
+        "answer_preview": "The chat route passes the retrieval mode to LocalQAService by calling the `ask` method of the `LocalQAService` class with the `retrieval_mode` parameter. This p..."
+      },
+      {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "models/repository.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "save_repository_overview",
+          "RepositoryOverviewResponse",
+          "indexing"
+        ],
+        "answer_preview": "RepositoryOverviewResponse connects with save_repository_overview in indexing through the following mechanism:\n\n1. In the `RepositoryIndexingService` class, the..."
+      },
+      {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "services/repository_ingestion.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "scan_repository",
+          "repository_source"
+        ],
+        "answer_preview": "The `get_repository_source_snippet` function in `services/overview.py` prevents directory traversal and symlink attacks by performing the following checks:\n\n1. ..."
+      },
+      {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "ask",
+          "LocalChromaStore"
+        ],
+        "answer_preview": "The `select_diverse_chunks` method in the `LocalQAService` class prevents overlapping code chunks from duplicating evidence by checking for line overlap between..."
+      },
+      {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "services/ollama.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "LocalOllamaService",
+          "ollama",
+          "LocalQAService"
+        ],
+        "answer_preview": "LocalOllamaService is implemented in the file `services/ollama.py` starting at line 15 and ending at line 72. It queries Ollama by making HTTP requests to the O..."
+      },
+      {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "qa"
+        ],
+        "answer_preview": "Reciprocal Rank Fusion (RRF) combines rankings using the formula:\n\n\\[ \\text{score}(d) = \\sum_{\\text{rank}} \\frac{1.0}{\\text{rrf\\_k} + \\text{rank}} \\]\n\nwhere \\( ..."
+      }
+    ]
+  },
+  "matrix": {
+    "q01_exact_id_rrf_k": {
+      "semantic": {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "core/config.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "config",
+          "__init__"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/hybrid.py",
+          "core/config.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "reciprocal_rank_fusion",
+          "Settings"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "services/qa.py",
+          "core/config.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "LocalQAService",
+          "config"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q01_exact_id_rrf_k",
+        "category": "exact_identifier",
+        "question": "Where is rrf_k configured in settings?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "services/qa.py",
+          "services/hybrid.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "LocalQAService",
+          "reciprocal_rank_fusion"
+        ],
+        "answer_preview": "rrf_k is configured in the `Settings` class, which is defined in `core/config.py`."
+      }
+    },
+    "q02_exact_id_retrieval_top_k": {
+      "semantic": {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "semantic",
+        "file_found": false,
+        "symbol_found": true,
+        "evidence_found": false,
+        "answer_generated": false,
+        "grounded_answer": false,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/bm25.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "search",
+          "ask"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "core/config.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "Settings",
+          "ChatRequest"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "ask",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q02_exact_id_retrieval_top_k",
+        "category": "exact_identifier",
+        "question": "What is retrieval_top_k in the settings configuration?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "core/config.py",
+          "services/qa.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "Settings",
+          "ask",
+          "chat"
+        ],
+        "answer_preview": "The value of `retrieval_top_k` in the settings configuration is 5. This can be seen in the `Settings` class definition in `core/config.py`, where `retrieval_top..."
+      }
+    },
+    "q03_func_reciprocal_rank_fusion": {
+      "semantic": {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "rerank"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/hybrid.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "reciprocal_rank_fusion",
+          "qa"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "rerank"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q03_func_reciprocal_rank_fusion",
+        "category": "function",
+        "question": "What does reciprocal_rank_fusion do in the hybrid retrieval service?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "LocalQAService",
+          "qa"
+        ],
+        "answer_preview": "Reciprocal Rank Fusion (RRF) is a technique used in hybrid retrieval services to combine multiple ranked candidate lists into a single ranking. The function `re..."
+      }
+    },
+    "q04_func_tokenize_code": {
+      "semantic": {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/reranker.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "_extract_query_terms",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/bm25.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "search",
+          "replace_repository_chunks"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/reranker.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "_extract_query_terms",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q04_func_tokenize_code",
+        "category": "function",
+        "question": "How does tokenize_code construct search tokens from source text?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/bm25.py",
+          "services/bm25.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "tokenize_code",
+          "search",
+          "search"
+        ],
+        "answer_preview": "To answer the question \"How does tokenize_code construct search tokens from source text?\", I will analyze the provided code snippet from `services/bm25.py`.\n\nTh..."
+      }
+    },
+    "q05_class_local_reranker": {
+      "semantic": {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/reranker.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "LocalReranker",
+          "LocalChromaStore"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/reranker.py",
+          "services/reranker.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "__init__",
+          "_extract_query_terms",
+          "__init__"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/reranker.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "__init__",
+          "_extract_query_terms"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q05_class_local_reranker",
+        "category": "class",
+        "question": "What methods and attributes does LocalReranker have?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/reranker.py",
+          "services/reranker.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "LocalReranker",
+          "reranker",
+          "LocalQAService"
+        ],
+        "answer_preview": "Based on the provided code context, the `LocalReranker` class has the following methods and attributes:\n\n### Methods:\n1. **`__init__`**: Initializes the reranke..."
+      }
+    },
+    "q06_class_overview_response": {
+      "semantic": {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "models/repository.py",
+          "models/repository.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryOverviewResponse",
+          "RepositoryScanRequest",
+          "RepositoryScanResponse"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "models/repository.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "repository_overview",
+          "RepositoryOverviewResponse",
+          "routes"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "models/repository.py",
+          "api/routes.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryOverviewResponse",
+          "repository_overview",
+          "RepositoryScanRequest"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q06_class_overview_response",
+        "category": "class",
+        "question": "What fields are defined on the RepositoryOverviewResponse model?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "models/repository.py",
+          "models/repository.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryOverviewResponse",
+          "RepositoryScanResponse",
+          "SourceCodeResponse"
+        ],
+        "answer_preview": "Based on the provided code snippets, the `RepositoryOverviewResponse` model is defined in the `models/repository.py` file. The fields defined on this model are:..."
+      }
+    },
+    "q07_arch_hybrid_fusion": {
+      "semantic": {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "select_diverse_chunks",
+          "search"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "__init__",
+          "chat"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "select_diverse_chunks",
+          "__init__"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q07_arch_hybrid_fusion",
+        "category": "architecture",
+        "question": "How are hybrid retrieval results fused and filtered in LocalQAService?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/hybrid.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "qa",
+          "reciprocal_rank_fusion"
+        ],
+        "answer_preview": "Hybrid retrieval results are fused and filtered in the `LocalQAService` class by the `ask` method. The `ask` method first determines the retrieval mode (e.g., \"..."
+      }
+    },
+    "q08_arch_indexing_pipeline": {
+      "semantic": {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/indexing.py",
+          "services/bm25.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryIndexingService",
+          "LocalBM25Store",
+          "LocalChromaStore"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/indexing.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "ask",
+          "__init__",
+          "indexing"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/indexing.py",
+          "services/qa.py",
+          "services/bm25.py"
+        ],
+        "retrieved_symbols": [
+          "RepositoryIndexingService",
+          "ask",
+          "LocalBM25Store"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q08_arch_indexing_pipeline",
+        "category": "architecture",
+        "question": "How does the indexing service persist chunks into ChromaDB and BM25?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/indexing.py",
+          "services/bm25.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "indexing",
+          "bm25",
+          "RepositoryIndexingService"
+        ],
+        "answer_preview": "The indexing service persists chunks into ChromaDB and BM25 by using the `LocalChromaStore` and `LocalBM25Store` classes respectively. Here's how it works:\n\n1. ..."
+      }
+    },
+    "q09_cross_chat_request_flow": {
+      "semantic": {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/qa.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "chat",
+          "LocalQAService",
+          "ChatRequest"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/qa.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "chat",
+          "ask",
+          "ChatResponse"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/qa.py",
+          "models/rag.py"
+        ],
+        "retrieved_symbols": [
+          "chat",
+          "LocalQAService",
+          "ChatRequest"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q09_cross_chat_request_flow",
+        "category": "cross_component",
+        "question": "How does the chat route pass retrieval mode to LocalQAService?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "api/routes.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "LocalQAService",
+          "chat",
+          "qa"
+        ],
+        "answer_preview": "The chat route passes the retrieval mode to LocalQAService by calling the `ask` method of the `LocalQAService` class with the `retrieval_mode` parameter. This p..."
+      }
+    },
+    "q10_cross_overview_indexing": {
+      "semantic": {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "models/repository.py",
+          "services/overview.py"
+        ],
+        "retrieved_symbols": [
+          "repository_overview",
+          "RepositoryOverviewResponse",
+          "get_repository_overview"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "api/routes.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "save_repository_overview",
+          "repository_overview",
+          "indexing"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "api/routes.py",
+          "services/overview.py",
+          "models/repository.py"
+        ],
+        "retrieved_symbols": [
+          "repository_overview",
+          "save_repository_overview",
+          "RepositoryOverviewResponse"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q10_cross_overview_indexing",
+        "category": "cross_component",
+        "question": "How does RepositoryOverviewResponse connect with save_repository_overview in indexing?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "models/repository.py",
+          "services/indexing.py"
+        ],
+        "retrieved_symbols": [
+          "save_repository_overview",
+          "RepositoryOverviewResponse",
+          "indexing"
+        ],
+        "answer_preview": "RepositoryOverviewResponse connects with save_repository_overview in indexing through the following mechanism:\n\n1. In the `RepositoryIndexingService` class, the..."
+      }
+    },
+    "q11_detail_source_traversal_prevention": {
+      "semantic": {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "services/repository_ingestion.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "scan_repository",
+          "repository_source"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "api/routes.py",
+          "services/repository_ingestion.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "repository_source",
+          "scan_repository"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "services/repository_ingestion.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "scan_repository",
+          "repository_source"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q11_detail_source_traversal_prevention",
+        "category": "implementation_detail",
+        "question": "How does get_repository_source_snippet prevent directory traversal and symlink attacks?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/overview.py",
+          "services/repository_ingestion.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "get_repository_source_snippet",
+          "scan_repository",
+          "repository_source"
+        ],
+        "answer_preview": "The `get_repository_source_snippet` function in `services/overview.py` prevents directory traversal and symlink attacks by performing the following checks:\n\n1. ..."
+      }
+    },
+    "q12_detail_select_diverse_chunks": {
+      "semantic": {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/vector_store.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "replace_repository_chunks",
+          "LocalReranker"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "ask",
+          "LocalChromaStore"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/vector_store.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "replace_repository_chunks",
+          "ask"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q12_detail_select_diverse_chunks",
+        "category": "implementation_detail",
+        "question": "How does select_diverse_chunks prevent overlapping code chunks from duplicating evidence?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/qa.py",
+          "services/qa.py",
+          "services/vector_store.py"
+        ],
+        "retrieved_symbols": [
+          "select_diverse_chunks",
+          "ask",
+          "LocalChromaStore"
+        ],
+        "answer_preview": "The `select_diverse_chunks` method in the `LocalQAService` class prevents overlapping code chunks from duplicating evidence by checking for line overlap between..."
+      }
+    },
+    "q13_loc_ollama_client": {
+      "semantic": {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "api/routes.py",
+          "services/ollama.py"
+        ],
+        "retrieved_symbols": [
+          "LocalOllamaService",
+          "ollama_status",
+          "OllamaUnavailable"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "services/ollama.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "__init__",
+          "status",
+          "LocalQAService"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "services/qa.py",
+          "api/routes.py"
+        ],
+        "retrieved_symbols": [
+          "LocalOllamaService",
+          "LocalQAService",
+          "ollama_status"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q13_loc_ollama_client",
+        "category": "location",
+        "question": "Where is LocalOllamaService implemented and how does it query Ollama?",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/ollama.py",
+          "services/ollama.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "LocalOllamaService",
+          "ollama",
+          "LocalQAService"
+        ],
+        "answer_preview": "LocalOllamaService is implemented in the file `services/ollama.py` starting at line 15 and ending at line 72. It queries Ollama by making HTTP requests to the O..."
+      }
+    },
+    "q14_expl_rrf_scoring": {
+      "semantic": {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "semantic",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/reranker.py",
+          "services/reranker.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "rerank",
+          "score_candidate"
+        ],
+        "answer_preview": ""
+      },
+      "bm25": {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "bm25",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "qa"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid": {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "hybrid",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": false,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/reranker.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "rerank",
+          "ask"
+        ],
+        "answer_preview": ""
+      },
+      "hybrid_rerank": {
+        "id": "q14_expl_rrf_scoring",
+        "category": "explanation",
+        "question": "Explain how reciprocal rank fusion combines rankings using rrf_k in reciprocal_rank_fusion.",
+        "mode": "hybrid_rerank",
+        "file_found": true,
+        "symbol_found": true,
+        "evidence_found": true,
+        "answer_generated": true,
+        "grounded_answer": true,
+        "retrieved_files": [
+          "services/hybrid.py",
+          "services/qa.py",
+          "services/qa.py"
+        ],
+        "retrieved_symbols": [
+          "reciprocal_rank_fusion",
+          "ask",
+          "qa"
+        ],
+        "answer_preview": "Reciprocal Rank Fusion (RRF) combines rankings using the formula:\n\n\\[ \\text{score}(d) = \\sum_{\\text{rank}} \\frac{1.0}{\\text{rrf\\_k} + \\text{rank}} \\]\n\nwhere \\( ..."
+      }
+    }
+  }
+}

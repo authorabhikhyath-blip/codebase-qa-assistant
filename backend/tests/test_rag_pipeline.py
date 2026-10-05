@@ -65,12 +65,27 @@ def test_tree_sitter_extracts_function_class_method_and_imports() -> None:
     )
 
     assert not syntax_error
-    assert {chunk.chunk_type for chunk in chunks} >= {"module", "import", "class", "method", "function"}
-    assert any(chunk.symbol == "UserService" and chunk.start_line == 3 for chunk in chunks)
+    assert {chunk.chunk_type for chunk in chunks} == {"module_preamble", "class", "method", "function"}
+    assert not any(chunk.chunk_type == "import" for chunk in chunks)
+    assert not any(chunk.chunk_type == "module" for chunk in chunks)
+    preamble = next(chunk for chunk in chunks if chunk.chunk_type == "module_preamble")
+    assert "import os" in preamble.source_code
+    assert preamble.start_line == 1 and preamble.end_line == 1
+
+    cls_chunk = next(chunk for chunk in chunks if chunk.chunk_type == "class")
+    assert cls_chunk.symbol == "UserService"
+    assert cls_chunk.parent_symbol == ""
+    assert cls_chunk.start_line == 3
+
     method = next(chunk for chunk in chunks if chunk.chunk_type == "method")
     assert method.symbol == "authenticate"
+    assert method.parent_symbol == "UserService"
     assert method.start_line == 4 and method.end_line == 5
     assert "return bool(password)" in method.source_code
+
+    func_chunk = next(chunk for chunk in chunks if chunk.chunk_type == "function")
+    assert func_chunk.symbol == "logout"
+    assert func_chunk.parent_symbol == ""
 
 
 def test_tree_sitter_reports_syntax_errors_without_throwing() -> None:
@@ -281,3 +296,124 @@ def test_indexing_api_rejects_non_directory_path(tmp_path: Path) -> None:
 
     assert response.status_code == 400
     assert "must point to a directory" in response.json()["detail"]
+
+
+def test_imports_grouped_into_single_preamble_chunk() -> None:
+    parser = PythonTreeSitterParser()
+    source = (
+        '"""Module docstring."""\n'
+        'from __future__ import annotations\n\n'
+        'import os\n'
+        'import sys\n'
+        'from pathlib import Path\n\n'
+        'def main():\n'
+        '    return 0\n'
+    )
+    chunks, syntax_error = parser.parse(
+        source,
+        repository_id="repo-id",
+        repository_name="sample",
+        repository_path="/tmp/sample",
+        file_path="main.py",
+    )
+
+    assert not syntax_error
+    preambles = [c for c in chunks if c.chunk_type == "module_preamble"]
+    assert len(preambles) == 1
+    assert "import os" in preambles[0].source_code
+    assert "import sys" in preambles[0].source_code
+    assert "from pathlib import Path" in preambles[0].source_code
+    assert not any(c.chunk_type == "import" for c in chunks)
+    assert any(c.chunk_type == "function" and c.symbol == "main" for c in chunks)
+
+
+def test_nested_classes_and_methods_track_parent_symbols() -> None:
+    parser = PythonTreeSitterParser()
+    source = (
+        "class Outer:\n"
+        "    class Inner:\n"
+        "        def inner_method(self):\n"
+        "            return 1\n"
+        "    def outer_method(self):\n"
+        "        return 2\n"
+    )
+    chunks, _ = parser.parse(
+        source,
+        repository_id="repo-id",
+        repository_name="sample",
+        repository_path="/tmp/sample",
+        file_path="nested.py",
+    )
+
+    outer_class = next(c for c in chunks if c.chunk_type == "class" and c.symbol == "Outer")
+    assert outer_class.parent_symbol == ""
+
+    inner_class = next(c for c in chunks if c.chunk_type == "class" and c.symbol == "Inner")
+    assert inner_class.parent_symbol == "Outer"
+
+    inner_method = next(c for c in chunks if c.chunk_type == "method" and c.symbol == "inner_method")
+    assert inner_method.parent_symbol == "Outer.Inner"
+
+    outer_method = next(c for c in chunks if c.chunk_type == "method" and c.symbol == "outer_method")
+    assert outer_method.parent_symbol == "Outer"
+
+
+def test_select_diverse_chunks_filters_overlapping_class_and_method() -> None:
+    candidates = [
+        # Rank 1: Method 'authenticate' inside UserService
+        {
+            "source_code": "def authenticate(self): return True",
+            "metadata": {
+                "file_path": "services/auth.py",
+                "symbol": "authenticate",
+                "parent_symbol": "UserService",
+                "chunk_type": "method",
+                "start_line": 20,
+                "end_line": 35,
+            },
+        },
+        # Rank 2: Entire UserService class (encompasses lines 10-60, completely overlapping with rank 1)
+        {
+            "source_code": "class UserService:\n    ...",
+            "metadata": {
+                "file_path": "services/auth.py",
+                "symbol": "UserService",
+                "parent_symbol": "",
+                "chunk_type": "class",
+                "start_line": 10,
+                "end_line": 60,
+            },
+        },
+        # Rank 3: Another method from a completely different file
+        {
+            "source_code": "def parse(): pass",
+            "metadata": {
+                "file_path": "services/parser.py",
+                "symbol": "parse",
+                "parent_symbol": "Parser",
+                "chunk_type": "method",
+                "start_line": 15,
+                "end_line": 40,
+            },
+        },
+        # Rank 4: Module preamble from services/auth.py (lines 1-8, non-overlapping with method authenticate)
+        {
+            "source_code": "import os\nfrom pathlib import Path",
+            "metadata": {
+                "file_path": "services/auth.py",
+                "symbol": "auth",
+                "parent_symbol": "",
+                "chunk_type": "module_preamble",
+                "start_line": 1,
+                "end_line": 8,
+            },
+        },
+    ]
+
+    selected = LocalQAService.select_diverse_chunks(candidates, target_k=3)
+    # The duplicate containing class (Rank 2) must be skipped because it heavily overlaps with Rank 1!
+    assert len(selected) == 3
+    assert selected[0]["metadata"]["symbol"] == "authenticate"
+    assert selected[1]["metadata"]["symbol"] == "parse"
+    assert selected[2]["metadata"]["chunk_type"] == "module_preamble"
+    assert not any(item["metadata"]["symbol"] == "UserService" for item in selected)

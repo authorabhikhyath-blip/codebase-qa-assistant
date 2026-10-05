@@ -7,6 +7,7 @@ class CodeChunk(BaseModel):
     repository_path: str
     file_path: str
     symbol: str = ""
+    parent_symbol: str = ""
     chunk_type: str
     start_line: int = Field(ge=1)
     end_line: int = Field(ge=1)
@@ -38,11 +39,13 @@ class ChatRequest(BaseModel):
     path: str = Field(min_length=1)
     question: str = Field(min_length=1, max_length=4000)
     top_k: int | None = Field(default=None, ge=1, le=20)
+    retrieval_mode: str = Field(default="hybrid", pattern="^(hybrid|semantic|bm25|hybrid_rerank|hybrid\\+rerank)$")
 
 
 class SourceReference(BaseModel):
     file_path: str
     symbol: str = ""
+    parent_symbol: str = ""
     chunk_type: str
     start_line: int
     end_line: int
@@ -54,6 +57,7 @@ class ChatResponse(BaseModel):
     retrieved_chunks: int
     repository_id: str
     repository_name: str
+    retrieval_mode: str = "hybrid"
 
 
 class OllamaStatusResponse(BaseModel):

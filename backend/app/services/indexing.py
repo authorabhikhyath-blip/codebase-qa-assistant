@@ -1,5 +1,4 @@
-from __future__ import annotations
-
+from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 from typing import Callable
@@ -7,7 +6,9 @@ from uuid import uuid4
 
 from app.core.config import settings
 from app.models.rag import CodeChunk
+from app.services.bm25 import LocalBM25Store, get_local_bm25_store
 from app.services.embeddings import get_embedding_service
+from app.services.overview import save_repository_overview
 from app.services.python_parser import PythonTreeSitterParser
 from app.services.repository_ingestion import scan_repository
 from app.services.vector_store import LocalChromaStore, get_local_chroma_store, repository_identity
@@ -15,9 +16,12 @@ from app.services.vector_store import LocalChromaStore, get_local_chroma_store, 
 
 class RepositoryIndexingService:
     def __init__(self, *, embedder=None, vector_store: LocalChromaStore | None = None,
+                 bm25_store: LocalBM25Store | None = None,
                  parser: PythonTreeSitterParser | None = None) -> None:
         self.embedder = embedder or get_embedding_service()
         self.vector_store = vector_store or get_local_chroma_store()
+        bm25_dir = (Path(self.vector_store.data_dir).parent / "bm25") if hasattr(self.vector_store, "data_dir") else None
+        self.bm25_store = bm25_store or get_local_bm25_store(bm25_dir)
         self.parser = parser or PythonTreeSitterParser()
 
     def index_repository(self, path: str, progress: Callable[..., None] | None = None) -> dict[str, object]:
@@ -58,12 +62,43 @@ class RepositoryIndexingService:
         for offset in range(0, len(chunks), 64):
             batch = chunks[offset:offset + 64]
             vectors.extend(self.embedder.embed_documents([
-                f"File: {chunk.file_path}\nSymbol: {chunk.symbol}\nType: {chunk.chunk_type}\n{chunk.source_code}"
+                (f"File: {chunk.file_path}\n"
+                 f"Symbol: {f'{chunk.parent_symbol}.{chunk.symbol}' if chunk.parent_symbol and chunk.symbol else (chunk.symbol or chunk.parent_symbol)}\n"
+                 f"Type: {chunk.chunk_type}\n"
+                 f"{chunk.source_code}")
                 for chunk in batch
             ]))
         if progress:
             progress(stage="storing")
         chunks_indexed = self.vector_store.replace_repository_chunks(repository_id, chunks, vectors)
+        self.bm25_store.replace_repository_chunks(repository_id, chunks)
+
+        classes_count = sum(1 for c in chunks if c.chunk_type == "class")
+        functions_count = sum(1 for c in chunks if c.chunk_type == "function")
+        methods_count = sum(1 for c in chunks if c.chunk_type == "method")
+        modules_count = sum(1 for c in chunks if c.chunk_type in {"module", "module_preamble"})
+        total_lines = sum(int(file_info.get("lines", 0)) for file_info in files)
+
+        overview_payload = {
+            "repository_id": repository_id,
+            "repository_name": repository_name,
+            "repository_path": canonical_path,
+            "supported_languages": ["Python"],
+            "files_count": len(files),
+            "lines_count": total_lines,
+            "chunks_count": len(chunks),
+            "classes_count": classes_count,
+            "functions_count": functions_count,
+            "methods_count": methods_count,
+            "modules_count": modules_count,
+            "indexed_at": datetime.now(timezone.utc).isoformat(),
+            "embedding_model": settings.embedding_model,
+            "llm_model": settings.ollama_model,
+            "default_retrieval_mode": "hybrid",
+        }
+        overview_dir = Path(self.vector_store.data_dir).parent if hasattr(self.vector_store, "data_dir") else None
+        save_repository_overview(overview_payload, overview_dir)
+
         return {
             "repository_id": repository_id,
             "repository_name": repository_name,

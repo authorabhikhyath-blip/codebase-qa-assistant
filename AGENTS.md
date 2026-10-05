@@ -8,8 +8,8 @@ Build a local-first application for asking grounded questions about Python repos
 
 - Frontend: Next.js App Router, TypeScript, Tailwind CSS, with shadcn/ui-compatible conventions.
 - Backend: Python, FastAPI, and Pydantic under `backend/app` (API, core, models, and services).
-- Implemented local pipeline: repository scanning, Tree-sitter Python parsing/chunking, FastEmbed embeddings, persistent ChromaDB, semantic retrieval, and Ollama generation.
-- Not implemented: BM25/hybrid retrieval, reranking, additional languages, Supabase, authentication, and deployment infrastructure.
+- Implemented local pipeline: repository scanning, Tree-sitter Python parsing/chunking, FastEmbed embeddings, persistent ChromaDB, local BM25 lexical store, Reciprocal Rank Fusion (RRF), diversity/overlap filtering, local cross-encoder reranking, Ollama generation (`qwen2.5-coder:3b`), and secure source navigation.
+- Evaluated and verified: reproducible 14-question benchmark across 8 question categories comparing semantic, BM25, hybrid RRF, and hybrid + rerank modes.
 - Supabase may be considered only as an optional local service for metadata; it must not be required for Code QA.
 
 ## Privacy and cost
@@ -41,10 +41,11 @@ Build a local-first application for asking grounded questions about Python repos
 
 1. Foundation, health endpoint, and local development docs: complete.
 2. Safe local Python repository selection and file discovery: complete.
-3. Tree-sitter parsing/chunking, local embeddings, and Chroma indexing: implemented.
-4. Semantic retrieval, local Ollama answers, and source references: implemented; answer quality needs verification with a suitable local model and representative repositories.
-5. BM25/hybrid retrieval and local reranking: pending.
-6. Review retrieval quality, improve developer workflows, and polish the interface: pending.
+3. Tree-sitter parsing/chunking, local embeddings, and Chroma indexing: complete.
+4. Semantic retrieval, local Ollama answers, and source references: complete.
+5. BM25/hybrid retrieval and local reranking: complete.
+6. Evaluation system, repository intelligence, source navigation, and UI polish: complete.
+7. Next milestone recommendation: Multi-turn conversational memory, multi-repository management, and exportable benchmark reports.
 
 ## Scope and accuracy rules
 
