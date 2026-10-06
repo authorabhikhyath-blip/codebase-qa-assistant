@@ -46,6 +46,7 @@ def test_repository_overview_derives_statistics(tmp_path: Path) -> None:
     assert overview["repository_id"] == repo_id
     assert overview["repository_name"] == "sample_repo"
     assert overview["files_count"] == 2
+    assert overview["lines_count"] == 10
     assert overview["chunks_count"] > 0
     assert overview["classes_count"] == 1
     assert overview["methods_count"] == 1
@@ -139,4 +140,3 @@ def test_api_overview_and_source_endpoints(tmp_path: Path, monkeypatch: pytest.M
     # Security check via API
     forbidden_resp = client.get(f"/api/repositories/{repo_id}/source?file_path=../../outside.txt")
     assert forbidden_resp.status_code == 403
-

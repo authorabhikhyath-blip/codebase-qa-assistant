@@ -160,6 +160,13 @@ def test_chat_builds_grounded_prompt_and_source_references(repository: Path, tmp
     assert "auth.py:" in ollama.prompt
     assert "Do not invent repository facts" in ollama.prompt
     assert "Do not claim a file or symbol is absent" in ollama.prompt
+    assert "local codebase understanding assistant" in ollama.prompt
+    assert "connect evidence from the different supplied files" in ollama.prompt
+    assert "Every repository-specific claim must include an inline citation" in ollama.prompt
+    assert "Keep pipeline stages distinct" in ollama.prompt
+    assert "do not infer its behavior from a related backend endpoint" in ollama.prompt
+    assert "non-Python files such as TypeScript are not included as evidence" in ollama.prompt
+    assert "do not force a fixed answer template" in ollama.prompt
 
 
 def test_chat_api_returns_retrieval_and_source_metadata(repository: Path, tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -174,9 +181,65 @@ def test_chat_api_returns_retrieval_and_source_metadata(repository: Path, tmp_pa
 
     assert response.status_code == 200
     payload = response.json()
+    assert isinstance(payload["answer"], str)
     assert payload["retrieved_chunks"] > 0
     assert payload["sources"]
-    assert all(source["start_line"] >= 1 for source in payload["sources"])
+    assert all(source["start_line"] >= 1 and isinstance(source["file_path"], str) for source in payload["sources"])
+    assert payload["repository_id"]
+    assert payload["repository_name"] == repository.name
+    assert isinstance(payload["retrieval_mode"], str)
+
+
+def test_broad_questions_expand_retrieval_for_multi_file_evidence(tmp_path: Path) -> None:
+    def candidate(path: str, line: int) -> dict[str, object]:
+        return {
+            "chunk_id": f"{path}-{line}",
+            "source_code": f"def step_{line}(): return {line}",
+            "metadata": {"file_path": path, "start_line": line, "end_line": line + 1, "symbol": f"step_{line}", "chunk_type": "function"},
+        }
+
+    class TrackingVectorStore:
+        def __init__(self) -> None:
+            self.data_dir = tmp_path / "chroma"
+            self.requested_k: list[int] = []
+
+        def count(self, _repository_id: str) -> int:
+            return 1
+
+        def search(self, _repository_id: str, _embedding: list[float], top_k: int) -> list[dict[str, object]]:
+            self.requested_k.append(top_k)
+            return [candidate(f"frontend/part_{index}.py", index) for index in range(top_k)]
+
+    class TrackingBM25Store:
+        def __init__(self) -> None:
+            self.requested_k: list[int] = []
+
+        def count(self, _repository_id: str) -> int:
+            return 1
+
+        def search(self, _repository_id: str, _question: str, top_k: int) -> list[dict[str, object]]:
+            self.requested_k.append(top_k)
+            return [candidate(f"backend/part_{index}.py", index + 100) for index in range(top_k)]
+
+    class Embedder:
+        def embed_query(self, _query: str) -> list[float]:
+            return [1.0]
+
+    repository = tmp_path / "repository"
+    repository.mkdir()
+    vectors = TrackingVectorStore()
+    lexical = TrackingBM25Store()
+    qa = LocalQAService(embedder=Embedder(), vector_store=vectors, bm25_store=lexical, ollama=StubOllama())
+
+    broad = qa.retrieve(str(repository), "How does the backend combine semantic and lexical search, and where is RRF applied?", retrieval_mode="hybrid")
+    broad_candidate_count = vectors.requested_k[-1]
+    focused = qa.retrieve(str(repository), "Where is rrf_k configured?", retrieval_mode="hybrid")
+    focused_candidate_count = vectors.requested_k[-1]
+
+    assert broad_candidate_count == 64
+    assert focused_candidate_count < broad_candidate_count
+    assert len(broad) == 8
+    assert len({item["metadata"]["file_path"] for item in broad}) == len(broad)
 
 
 def test_chat_api_gives_actionable_error_for_unindexed_repository(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:

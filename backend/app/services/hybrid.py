@@ -7,7 +7,7 @@ def item_identity(item: dict[str, Any]) -> str:
     """Extract a unique identity for a retrieved chunk item."""
     if item.get("chunk_id"):
         return str(item["chunk_id"])
-    meta = item.get("metadata", {})
+    meta = item.get("metadata") or {}
     return "\0".join((
         str(meta.get("file_path", "")),
         str(meta.get("start_line", "")),

@@ -51,7 +51,7 @@ def test_scan_rejects_file_path(tmp_path: Path) -> None:
     assert error.value.status_code == 400
 
 
-@pytest.mark.parametrize("ignored", [".git", "node_modules", "__pycache__", ".venv", "venv", "env", "dist", "build", ".next", "coverage"])
+@pytest.mark.parametrize("ignored", [".git", ".pnpm-store", ".npm", ".yarn", "node_modules", "__pycache__", ".venv", "venv", "env", "dist", "build", ".next", "coverage"])
 def test_scan_ignores_generated_directories(tmp_path: Path, ignored: str) -> None:
     hidden = tmp_path / ignored
     hidden.mkdir()

@@ -27,9 +27,17 @@ class PythonTreeSitterParser:
         final_line = max(1, source.count("\n") + (1 if source and not source.endswith("\n") else 0))
         chunks: list[CodeChunk] = []
 
+        def _row_col(point) -> tuple[int, int]:
+            try:
+                return int(point[0]), int(point[1])
+            except (TypeError, IndexError):
+                return int(getattr(point, "row", 0)), int(getattr(point, "column", 0))
+
         def make_chunk(node, chunk_type: str, symbol: str = "", parent_symbol: str = "") -> None:
             code = source_bytes[node.start_byte:node.end_byte].decode("utf-8", errors="replace")
             if code.strip():
+                start_row, _ = _row_col(node.start_point)
+                end_row, end_col = _row_col(node.end_point)
                 chunks.append(CodeChunk(
                     repository_id=repository_id,
                     repository_name=repository_name,
@@ -38,8 +46,8 @@ class PythonTreeSitterParser:
                     symbol=symbol,
                     parent_symbol=parent_symbol,
                     chunk_type=chunk_type,
-                    start_line=node.start_point.row + 1,
-                    end_line=max(node.start_point.row + 1, node.end_point.row + (1 if node.end_point.column else 0)),
+                    start_line=start_row + 1,
+                    end_line=max(start_row + 1, end_row + (1 if end_col else 0)),
                     source_code=code,
                 ))
 
@@ -74,14 +82,15 @@ class PythonTreeSitterParser:
             first_named = top_level[0]
             if first_named.type == "expression_statement" and first_named.start_byte < first_import.start_byte:
                 start_byte = first_named.start_byte
-                start_line = first_named.start_point.row + 1
+                start_line = _row_col(first_named.start_point)[0] + 1
             else:
                 start_byte = first_import.start_byte
-                start_line = first_import.start_point.row + 1
+                start_line = _row_col(first_import.start_point)[0] + 1
 
             last_import = import_nodes[-1]
             end_byte = last_import.end_byte
-            end_line = max(start_line, last_import.end_point.row + (1 if last_import.end_point.column else 0))
+            last_end_row, last_end_col = _row_col(last_import.end_point)
+            end_line = max(start_line, last_end_row + (1 if last_end_col else 0))
 
             preamble_code = source_bytes[start_byte:end_byte].decode("utf-8", errors="replace")
             if preamble_code.strip():

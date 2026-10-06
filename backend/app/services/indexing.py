@@ -25,6 +25,8 @@ class RepositoryIndexingService:
         self.parser = parser or PythonTreeSitterParser()
 
     def index_repository(self, path: str, progress: Callable[..., None] | None = None) -> dict[str, object]:
+        if progress:
+            progress(stage="scanning")
         scan = scan_repository(path)
         repository_id, canonical_path = repository_identity(scan["repository_path"])
         repository_name = str(scan["repository_name"])
@@ -69,15 +71,17 @@ class RepositoryIndexingService:
                 for chunk in batch
             ]))
         if progress:
-            progress(stage="storing")
+            progress(stage="semantic_index")
         chunks_indexed = self.vector_store.replace_repository_chunks(repository_id, chunks, vectors)
+        if progress:
+            progress(stage="lexical_index")
         self.bm25_store.replace_repository_chunks(repository_id, chunks)
 
         classes_count = sum(1 for c in chunks if c.chunk_type == "class")
         functions_count = sum(1 for c in chunks if c.chunk_type == "function")
         methods_count = sum(1 for c in chunks if c.chunk_type == "method")
         modules_count = sum(1 for c in chunks if c.chunk_type in {"module", "module_preamble"})
-        total_lines = sum(int(file_info.get("lines", 0)) for file_info in files)
+        total_lines = sum(int(file_info.get("line_count", 0)) for file_info in files)
 
         overview_payload = {
             "repository_id": repository_id,
@@ -130,6 +134,7 @@ class IndexJobManager:
             "repository_name": Path(canonical_path).name,
             "repository_path": canonical_path,
             "status": "queued",
+            "stage": "queued",
             "files_total": 0,
             "files_processed": 0,
             "files_indexed": 0,
